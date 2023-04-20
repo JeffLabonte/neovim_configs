@@ -31,7 +31,18 @@ function show_on_start(dashboard_opts)
     require("lazy").show()
   end
 
-  require("alpha").setup(dashboard.opts)
+  require("alpha").setup(dashboard_opts)
+end
+
+function generate_footer()
+  local neovim_version = "   v" .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
+  local quote = table.concat(require("alpha.fortune")(), "\n")
+
+  local lazy_stats = require("lazy").stats()
+  local startup_time_in_ms = (math.floor(lazy_stats.startuptime * 100 + 0.5) / 100)
+  local plugins_stats = "⚡Neovim loaded " .. lazy_stats.count .. " plugins in " .. startup_time_in_ms .. "ms"
+
+  return "\t" .. neovim_version .. "\t" .. plugins_stats .. "\n" .. quote
 end
 
 return {
@@ -44,16 +55,7 @@ return {
     vim.api.nvim_create_autocmd("User", {
       pattern = "LazyVimStarted",
       callback = function()
-        local version = "   v" .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
-        local quote = table.concat(require("alpha.fortune")(), "\n")
-
-        local ms = (math.floor(stats.startup_time * 100 + 0.5) / 100)
-        local stats = require("lazy").stats()
-        local plugins = "⚡Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
-
-        local footer = "\t" .. version .. "\t" .. plugins .. "\n" .. quote
-
-        dashboard.section.footer.val = footer
+        dashboard.section.footer.val = generate_footer()
         pcall(vim.cmd.AlphaRedraw)
       end,
     })
