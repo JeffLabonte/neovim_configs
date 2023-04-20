@@ -1,6 +1,6 @@
 function create_dashboard()
   local dashboard = require("alpha.themes.dashboard")
-  dashboard.header.val = require("plugins.dashbaord.logo")["random"]
+  dashboard.section.header.val = require("plugins.dashboard.logo")["random"]
   dashboard.section.buttons.val = {
     dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
     dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
