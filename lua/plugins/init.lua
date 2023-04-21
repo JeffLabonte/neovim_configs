@@ -16,7 +16,6 @@ return {
     config = true,
   },
   "wakatime/vim-wakatime",
-  "github/copilot.vim",
   {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
