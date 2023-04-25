@@ -26,18 +26,6 @@ local servers = {
       },
     },
   },
-  lua_language_server = {
-    settings = {
-      Lua = {
-        workspace = {
-          checkThirdParty = false,
-        },
-        completion = { callSnippet = "Replace" },
-        telemetry = { enable = false },
-        hint = { enable = false },
-      },
-    },
-  },
   tsserver = {
     disable_formatting = true,
   },

@@ -28,7 +28,6 @@ return {
       "ruff",
       "black",
       "debugpy",
-      "lua-language-server",
       "rust-analyzer",
       "json-lsp",
     },
