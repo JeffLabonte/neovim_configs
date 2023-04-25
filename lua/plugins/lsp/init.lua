@@ -15,19 +15,8 @@ return {
       "hrsh7th/cmp-nvim-lsp-signature-help",
     },
     config = function(plugins)
-      require("plugins.lsp.config").setup(plugins)
+      require("plugins.lsp.servers").setup(plugins)
     end
-  },
-  {
-    "folke/neoconf.nvim",
-    cmd = "Neoconf",
-    config = function()
-      require("folke/neoconf.nvim").setup({
-        import = {
-          vscode = true,
-        },
-      })
-    end,
   },
   {
     "williamboman/mason.nvim",
@@ -38,6 +27,8 @@ return {
       "autopep8",
       "ruff",
       "black",
+      "debugpy",
+      "lua-language-server",
       "rust-analyzer",
       "json-lsp",
     },
@@ -52,5 +43,36 @@ return {
         end
       end
     end
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    event = "BufReadPre",
+    dependencies = {
+      "mason.nvim",
+    },
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.stylua,
+          null_ls.builtins.formatting.rustfmt,
+          null_ls.builtins.diagnostics.ruff.with({
+            extra_args = {
+              "--max-line-length=180",
+            }
+          })
+        }
+      })
+    end,
+  },
+  {
+    "utilyre/barbecue.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = true,
   }
 }
