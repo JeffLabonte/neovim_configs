@@ -17,7 +17,7 @@ return {
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
-      local icons = require("plugins.icons")
+      local icons = require("config.icons")
 
       cmp.setup({
         completion = {
