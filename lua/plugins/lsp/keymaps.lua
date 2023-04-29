@@ -35,7 +35,7 @@ function M.new(client, buffer)
 end
 
 function M:has(capability)
-  return self.client.server_capability[capability .. "Provider"]
+    return self.client.server_capabilities[capability .. "Provider"]
 end
 
 function M:map(lhs, rhs, opts)
