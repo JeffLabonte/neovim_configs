@@ -11,7 +11,7 @@ function M.format()
   local buffer = vim.api.nvim_get_current_buf()
   local filetype = vim.bo[buffer].filetype
 
-  local has_null_ls = #require("null_ls.source").get_available(filetype, "NULL_LS_FORMATTING") > 0
+  local has_null_ls = #require("null-ls.sources").get_available(filetype, "NULL_LS_FORMATTING") > 0
 
   vim.lsp.buf.format({
     bufnr = buffer,
