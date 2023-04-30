@@ -1,4 +1,4 @@
-function create_dashboard()
+local function create_dashboard()
   local dashboard = require("alpha.themes.dashboard")
   dashboard.section.header.val = require("plugins.dashboard.logo")["random"]
   dashboard.section.buttons.val = {
@@ -23,7 +23,7 @@ function create_dashboard()
   return dashboard
 end
 
-function show_on_start(dashboard_opts)
+local function show_on_start(dashboard_opts)
   if vim.o.filetype == "lazy" then
     -- close and re-open lazy after showing alpha
     vim.notify("Missing plugins installed", vim.log.levels.INFO, { title = "lazy.nvim" })
@@ -34,7 +34,7 @@ function show_on_start(dashboard_opts)
   require("alpha").setup(dashboard_opts)
 end
 
-function generate_footer()
+local function generate_footer()
   local neovim_version = "   v" .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
   local quote = table.concat(require("alpha.fortune")(), "\n")
 
