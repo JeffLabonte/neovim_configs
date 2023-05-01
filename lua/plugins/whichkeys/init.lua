@@ -18,6 +18,21 @@ return {
       q = { "<cmd>lua require('util').smart_quit()<CR>", "Quit" },
       f = { name = "+File" },
       g = { name = "+Git" },
+      s = {
+        name = "+Search",
+        c = {
+          function()
+            require("utils.cht").cht()
+          end,
+          "Cheatsheets",
+        },
+        s = {
+          function()
+            require("utils.cht").stack_overflow()
+          end,
+          "Stack Overflow",
+        },
+      },
       c = {
         name = "+Code",
         x = {

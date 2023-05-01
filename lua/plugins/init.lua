@@ -33,6 +33,11 @@ return {
     config = true,
   },
   {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = true,
+  },
+  {
     "TimUntersberger/neogit",
     cmd = "Neogit",
     config = {
